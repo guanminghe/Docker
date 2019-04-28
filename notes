@@ -1,1 +1,2 @@
 Docker 安装后的启动命令：service docker start
+拉取zookeeper镜像：docker pull zookeeper

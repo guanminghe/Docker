@@ -13,7 +13,7 @@ cmd java -jar /app/demo.jar
 4.在上一步新建的文件夹下执行构建镜像的命令：docker build -t mydocker .（mydocker为自己起的镜像名，后面有个点，表示在当前目录下执行）
 5.运行docker：docker run -d -p 4567:80 mydocker（4567为对外公布的接口，80为项目原来的接口，形成映射，mydocker为上一步起的名）
 多态的表现：
-class b{
+class B{
 		private String g;
 		
 		public String getG() {
@@ -22,33 +22,33 @@ class b{
 		public void setG(String g) {
 			this.g = g;
 		}
-		b aa(){
-			return new b();
+		B aa(){
+			return new B();
 			
 		}
 		void  cc(String dd){
 			System.out.println(dd);
 		}
 	}
-	class a extends b{
-		a aa(){
-			a a = new a();
+	class A extends B{
+		A aa(){
+			A a = new A();
 			a.setG("dog");
 			return a;
 		}
 	}
-	class c extends b{
-		c aa(){
-			c c = new c();
+	class C extends B{
+		C aa(){
+			C c = new C();
 			c.setG("cat");
 			return c;
 		}
 	}
 	class e{
 		void f(){
-			a a = new a().aa();
+			A a = new A().aa();
 			a.cc(a.getG());
-			c c = new c().aa();
+			C c = new C().aa();
 			c.cc(c.getG());
 		}
 	}

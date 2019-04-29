@@ -23,11 +23,11 @@ class B{
 			this.g = g;
 		}
 		B aa(){
-			return new B();
-			
+			return new A().aa();
 		}
-		void  cc(String dd){
+		B  cc(String dd){
 			System.out.println(dd);
+			return new C().aa();
 		}
 	}
 	class A extends B{
@@ -44,11 +44,12 @@ class B{
 			return c;
 		}
 	}
-	class e{
+	class E{
 		void f(){
 			A a = new A().aa();
 			a.cc(a.getG());
 			C c = new C().aa();
 			c.cc(c.getG());
+			new B().aa().cc("wolf");
 		}
 	}

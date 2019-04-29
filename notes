@@ -12,3 +12,43 @@ cmd java -jar /app/demo.jar
 3.将jar包和dockerfile文件放在linux新建的一个文件夹下，例如文件夹名叫：my
 4.在上一步新建的文件夹下执行构建镜像的命令：docker build -t mydocker .（mydocker为自己起的镜像名，后面有个点，表示在当前目录下执行）
 5.运行docker：docker run -d -p 4567:80 mydocker（4567为对外公布的接口，80为项目原来的接口，形成映射，mydocker为上一步起的名）
+多态的表现：
+class b{
+		private String g;
+		
+		public String getG() {
+			return g;
+		}
+		public void setG(String g) {
+			this.g = g;
+		}
+		b aa(){
+			return new b();
+			
+		}
+		void  cc(String dd){
+			System.out.println(dd);
+		}
+	}
+	class a extends b{
+		a aa(){
+			a a = new a();
+			a.setG("dog");
+			return a;
+		}
+	}
+	class c extends b{
+		c aa(){
+			c c = new c();
+			c.setG("cat");
+			return c;
+		}
+	}
+	class e{
+		void f(){
+			a a = new a().aa();
+			a.cc(a.getG());
+			c c = new c().aa();
+			c.cc(c.getG());
+		}
+	}

@@ -1,3 +1,14 @@
 Docker 安装后的启动命令：service docker start
 拉取zookeeper镜像：docker pull zookeeper
 maven打jar包：mvn clean install -Dmaven.test.skip
+docker布署springboot项目：
+1.maven打包：mvn clean install -Dmaven.test.skip（pom.xml目录下执行）
+2.准备dockerfile文件：（java:8为pull下的基础镜像，demo.javao 为上一步打包好的jar包，80为项目的运行接口）
+FROM         java:8
+workdir /app
+add /demo.jar ./demo.jar<br>env LOGPATH=/app/log/demo.log \
+PROT=80
+cmd java -jar /app/demo.jar
+3.将jar包和dockerfile文件放在linux新建的一个文件夹下，例如文件夹名叫：my
+4.在上一步新建的文件夹下执行构建镜像的命令：docker build -t mydocker .（mydocker为自己起的镜像名，后面有个点，表示在当前目录下执行）
+5.运行docker：docker run -d -p 4567:80 mydocker（4567为对外公布的接口，80为项目原来的接口，形成映射，mydocker为上一步起的名）

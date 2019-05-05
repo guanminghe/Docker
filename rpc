@@ -1,0 +1,29 @@
+provider和consumer
+基于springboot
+一、provider中：
+接口类IA，
+实现类Ai，
+serverlet类demoServlet（继承HessianServlet,实现接口类IA，使用实现类Ai代理,使用注解@WebServlet(name = "demorpc",urlPatterns = "/demoServlet")）,
+启动类中增加注解@ServletComponentScan）
+pom文件引入依赖：
+ <!-- https://mvnrepository.com/artifact/com.caucho/hessian -->
+        <dependency>
+            <groupId>com.caucho</groupId>
+            <artifactId>hessian</artifactId>
+            <version>4.0.60</version>
+        </dependency>
+二、consumer中：
+对外接口类DemoRpcController，
+与provider中对应的接口类IA，
+DemoRpcController的构造方法是核心代码：
+    public DemoRpcController(){
+        HessianProxyFactory proxyFactory = new HessianProxyFactory();
+        try{
+            api = (IA)proxyFactory.create(IA.class,"http://localhost:8088/demoServlet");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+ 三、provider和consumer的boot启动接口不可一样：application.properties文件中设置：server.port:8088
+

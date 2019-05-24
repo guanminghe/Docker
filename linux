@@ -1,0 +1,11 @@
+Ctrl + Alt + O去除多余的包
+
+Alt+回车  代码提示，自动导入包
+Ctrl+Alt+空格   显示实现类
+
+虚拟机tomcat路径
+cd /usr/share/tomcat
+启动tomcat服务：
+systemctl start tomcat.service
+停止tomcat服务
+systemctl stop tomcat.service

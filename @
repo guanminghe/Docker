@@ -1,0 +1,25 @@
+定义注解
+@Retention(RetentionPolicy.RUNTIME)是定义注解所必须的。 
+
+https://blog.csdn.net/wangpengzhi19891223/article/details/78131137/
+用@Retention(RetentionPolicy.CLASS)修饰的注解，表示注解的信息被保留在class文件(字节码文件)中当程序编译时，但不会被虚拟机读取在运行的时候； 
+用@Retention(RetentionPolicy.SOURCE )修饰的注解,表示注解的信息会被编译器抛弃，不会留在class文件中，注解的信息只会留在源文件中； 
+用@Retention(RetentionPolicy.RUNTIME )修饰的注解，表示注解的信息被保留在class文件(字节码文件)中当程序编译时，会被虚拟机保留在运行时，
+
+
+还需要注意的是java的元注解一共有四个： 
+@Document 
+@Target 
+@Retention 
+@Inherited
+
+
+AnnotatedElement 接口是所有程序元素（Class、Method和Constructor）的父接口，所以程序通过反射获取了某个类的AnnotatedElement对象之后，程序就可以调用该对象的如下四个个方法来访问Annotation信息：
+
+　　 
+注解处理的一个基础：
+
+方法1：<T extends Annotation> T getAnnotation(Class<T> annotationClass): 返回改程序元素上存在的、指定类型的注解，如果该类型注解不存在，则返回null。
+　　方法2：Annotation[] getAnnotations():返回该程序元素上存在的所有注解。
+　　方法3：boolean is AnnotationPresent(Class<?extends Annotation> annotationClass):判断该程序元素上是否包含指定类型的注解，存在则返回true，否则返回false.
+　　方法4：Annotation[] getDeclaredAnnotations()：返回直接存在于此元素上的所有注释。与
